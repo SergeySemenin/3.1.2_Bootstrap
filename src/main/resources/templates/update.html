@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+
+<div>
+    <form th:method="POST" th:object="${user}">
+        <label for="namePost">Enter name: </label>
+        <input type="text" th:field="*{name}" id="namePost"/>
+        <br>
+        <br>
+
+
+        <input type="submit" value="Update!"/>
+    </form>
+</div>
+<br>
+<br>
+<div><a th:href="@{/logout}">Logout</a></div>
+</body>
+</html>
+

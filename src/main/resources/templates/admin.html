@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <style>table th, table td {
+        padding: 5px;
+    }</style>
+</head>
+<body>
+<div>
+    <form th:method="POST" th:object="${user}">
+        <label for="namePost">Enter name: </label>
+        <input type="text" th:field="*{name}" id="namePost"/>
+        <br>
+        <br>
+
+        <label for="password">password: &nbsp&nbsp </label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <br>
+        <br>
+        <input type="submit" value="Create!"/>
+    </form>
+</div>
+<br>
+<br>
+
+
+<div th:align="center">
+    <table th:border="1">
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.getName()}">name</td>
+            <td th:text="${user.getRoles()}">role</td>
+            <td><a th:href="@{admin/delete={id}(id=${user.getId()})}">Delete</a></td>
+            <td><a th:href="@{admin/update={id}(id=${user.getId()})}">Update</a></td>
+
+        </tr>
+    </table>
+</div>
+<br>
+<br>
+<div><a th:href="@{/logout}">Logout</a></div>
+
+</body>
+</html>
