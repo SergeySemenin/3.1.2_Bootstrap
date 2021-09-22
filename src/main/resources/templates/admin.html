@@ -15,7 +15,6 @@
         <input type="text" th:field="*{name}" id="namePost"/>
         <br>
         <br>
-
         <label for="password">password: &nbsp&nbsp </label>
         <input type="text" th:field="*{password}" id="password"/>
         <br>
@@ -25,8 +24,6 @@
 </div>
 <br>
 <br>
-
-
 <div th:align="center">
     <table th:border="1">
         <tr>
@@ -35,7 +32,6 @@
             <th>Password</th>
             <th></th>
             <th></th>
-
         </tr>
         <tr th:each="user: ${users}">
             <td th:text="${user.getName()}">name</td>
@@ -43,13 +39,11 @@
             <td th:text="${user.getPassword()}">password</td>
             <td><a th:href="@{admin/delete={id}(id=${user.getId()})}">Delete</a></td>
             <td><a th:href="@{admin/update={id}(id=${user.getId()})}">Update</a></td>
-
         </tr>
     </table>
 </div>
 <br>
 <br>
 <div><a th:href="@{/logout}">Logout</a></div>
-
 </body>
 </html>

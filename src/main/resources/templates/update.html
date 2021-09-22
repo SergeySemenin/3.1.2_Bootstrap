@@ -5,15 +5,12 @@
     <title>Update</title>
 </head>
 <body>
-
 <div>
     <form th:method="POST" th:object="${user}">
         <label for="namePost">Enter name: </label>
         <input type="text" th:field="*{name}" id="namePost"/>
         <br>
         <br>
-
-
         <input type="submit" value="Update!"/>
     </form>
 </div>

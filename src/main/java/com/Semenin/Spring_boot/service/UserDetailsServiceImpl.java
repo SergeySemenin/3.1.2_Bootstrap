@@ -2,12 +2,13 @@ package com.Semenin.Spring_boot.service;
 
 import com.Semenin.Spring_boot.dao.UserDao;
 import com.Semenin.Spring_boot.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.List;
 
@@ -18,6 +19,9 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     public UserDetailsServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -44,6 +48,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     @Override
     @Transactional
     public void add(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.add(user);
     }
 
