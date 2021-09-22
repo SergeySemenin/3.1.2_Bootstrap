@@ -18,7 +18,11 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String lastName;
+    private String age;
+    private String email;
     private String password;
+
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @Fetch(FetchMode.JOIN)
@@ -33,11 +37,37 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String password, Set<Role> roles) {
-
+    public User(String name, String lastName, String age, String email, String password, Set<Role> roles) {
         this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
         this.password = password;
         this.roles = roles;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getId() {

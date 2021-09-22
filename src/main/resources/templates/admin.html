@@ -27,18 +27,25 @@
 <div th:align="center">
     <table th:border="1">
         <tr>
-            <th>Name</th>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Email</th>
             <th>Role</th>
-            <th>Password</th>
-            <th></th>
-            <th></th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         <tr th:each="user: ${users}">
-            <td th:text="${user.getName()}">name</td>
-            <td th:text="${user.getRoles()}">role</td>
-            <td th:text="${user.getPassword()}">password</td>
+            <td th:text="${user.getId()}">ID</td>
+            <td th:text="${user.getName()}">First Name</td>
+            <td th:text="${user.getLastName()}">Last Name</td>
+            <td th:text="${user.getAge()}">Age</td>
+            <td th:text="${user.getEmail()}">Email</td>
+            <td th:text="${user.getRoles()}">Role</td>
+            <td><a th:href="@{admin/update={id}(id=${user.getId()})}">Edit</a></td>
             <td><a th:href="@{admin/delete={id}(id=${user.getId()})}">Delete</a></td>
-            <td><a th:href="@{admin/update={id}(id=${user.getId()})}">Update</a></td>
+
         </tr>
     </table>
 </div>

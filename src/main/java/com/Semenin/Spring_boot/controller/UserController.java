@@ -52,14 +52,14 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @PostMapping("admin/update={id}")
+    @PostMapping("admin/edit={id}")
     public String update(@ModelAttribute("user") User user) {
         serviceUser.update(user);
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/update={id}")
+    @GetMapping("admin/edit={id}")
     public String updateGet(@ModelAttribute("user") User user) {
-        return "update";
+        return "edit";
     }
 }
