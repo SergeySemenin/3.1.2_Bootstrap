@@ -43,7 +43,7 @@
             <td th:text="${user.getAge()}">Age</td>
             <td th:text="${user.getEmail()}">Email</td>
             <td th:text="${user.getRoles()}">Role</td>
-            <td><a th:href="@{admin/update={id}(id=${user.getId()})}">Edit</a></td>
+            <td><a th:href="@{admin/edit={id}(id=${user.getId()})}">Edit</a></td>
             <td><a th:href="@{admin/delete={id}(id=${user.getId()})}">Delete</a></td>
 
         </tr>
