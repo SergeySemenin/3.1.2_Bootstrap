@@ -19,6 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     public UserDetailsServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
+
     @Autowired
     PasswordEncoder passwordEncoder;
 

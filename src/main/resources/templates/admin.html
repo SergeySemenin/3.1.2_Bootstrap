@@ -10,17 +10,7 @@
 </head>
 <body>
 <div>
-    <form th:method="POST" th:object="${user}">
-        <label for="namePost">Enter name: </label>
-        <input type="text" th:field="*{name}" id="namePost"/>
-        <br>
-        <br>
-        <label for="password">password: &nbsp&nbsp </label>
-        <input type="text" th:field="*{password}" id="password"/>
-        <br>
-        <br>
-        <input type="submit" value="Create!"/>
-    </form>
+    <a th:href="@{admin/new}">New User</a>
 </div>
 <br>
 <br>
@@ -45,7 +35,6 @@
             <td th:text="${user.getRoles()}">Role</td>
             <td><a th:href="@{admin/edit={id}(id=${user.getId()})}">Edit</a></td>
             <td><a th:href="@{admin/delete={id}(id=${user.getId()})}">Delete</a></td>
-
         </tr>
     </table>
 </div>
