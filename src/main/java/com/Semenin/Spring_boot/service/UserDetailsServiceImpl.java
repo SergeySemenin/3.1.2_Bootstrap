@@ -55,6 +55,13 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     @Override
     @Transactional
     public void update(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.update(user);
+    }
+
+    @Override
+    @Transactional
+    public User getUserById(long id) {
+        return userDao.getUserById(id);
     }
 }

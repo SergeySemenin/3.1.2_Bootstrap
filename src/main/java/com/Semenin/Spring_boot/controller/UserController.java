@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.security.Principal;
 import java.util.Set;
 
@@ -51,8 +52,8 @@ public class UserController {
 
     @PostMapping("admin/new")
     public String addUser(@RequestParam("select[]") Long[] select, @ModelAttribute("user") User user) {
-       Set<Role> roles = roleService.getRolesById(select);
-       user.setRoles(roles);
+        Set<Role> roles = roleService.getRolesById(select);
+        user.setRoles(roles);
         serviceUser.add(user);
         return "redirect:/admin";
     }
@@ -63,8 +64,9 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @PostMapping("admin/edit={id}")
-    public String update(@RequestParam("select[]") Long[] select, @ModelAttribute("user") User user) {
+    @PatchMapping("admin/edit={id}")
+    public String update(@RequestParam("select[]") Long[] select, @ModelAttribute("user") User user, Model model) {
+
         Set<Role> roles = roleService.getRolesById(select);
         user.setRoles(roles);
         serviceUser.update(user);
@@ -72,9 +74,11 @@ public class UserController {
     }
 
     @GetMapping("admin/edit={id}")
-    public String updateGet(@ModelAttribute("user") User user, Model model) {
+    public String updateGet(@PathVariable("id") Long id, @ModelAttribute("user") User user, Model model) {
         Set<Role> roles = roleService.getRoles();
         model.addAttribute("roles", roles);
+        model.addAttribute("user", serviceUser.getUserById(id));
+
         return "edit";
     }
 }
