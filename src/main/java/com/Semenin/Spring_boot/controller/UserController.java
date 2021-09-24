@@ -9,9 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -53,22 +50,22 @@ public class UserController {
     }
 
     @PostMapping("admin/new")
-    public String addUser(@RequestParam("select") Long[] select, @ModelAttribute("user") User user) {
-        Set<Role> roles = roleService.getRolesById(select[0]);
-        user.setRoles(roles);
+    public String addUser(@RequestParam("select[]") Long[] select, @ModelAttribute("user") User user) {
+       Set<Role> roles = roleService.getRolesById(select);
+       user.setRoles(roles);
         serviceUser.add(user);
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/delete={id}")
+    @DeleteMapping("admin/delete={id}")
     public String delete(@PathVariable("id") Long id) {
         serviceUser.removeUserById(id);
         return "redirect:/admin";
     }
 
     @PostMapping("admin/edit={id}")
-    public String update(@RequestParam("select") Long[] select, @ModelAttribute("user") User user) {
-        Set<Role> roles = roleService.getRolesById(select[0]);
+    public String update(@RequestParam("select[]") Long[] select, @ModelAttribute("user") User user) {
+        Set<Role> roles = roleService.getRolesById(select);
         user.setRoles(roles);
         serviceUser.update(user);
         return "redirect:/admin";

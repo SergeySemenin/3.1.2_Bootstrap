@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
     <style>table th, table td {
         padding: 5px;
     }</style>
+
 </head>
 <body>
 <div>
@@ -33,8 +35,16 @@
             <td th:text="${user.getAge()}">Age</td>
             <td th:text="${user.getEmail()}">Email</td>
             <td th:text="${user.getRoles()}">Role</td>
-            <td><a th:href="@{admin/edit={id}(id=${user.getId()})}">Edit</a></td>
-            <td><a th:href="@{admin/delete={id}(id=${user.getId()})}">Delete</a></td>
+            <td>
+                <form th:method="GET" th:action="@{admin/edit={id}(id=${user.getId()})}">
+                    <input type="submit" value="Edit"/>
+                </form>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{admin/delete={id}(id=${user.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
         </tr>
     </table>
 </div>
@@ -43,3 +53,4 @@
 <div><a th:href="@{/logout}">Logout</a></div>
 </body>
 </html>
+

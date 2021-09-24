@@ -29,11 +29,13 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public Set<Role> getRolesById(Long id) {
+    public Set<Role> getRolesById(Long [] id) {
         Set<Role> roleList = new HashSet<>();
-        Role role = em
-                .getReference(Role.class, id);
-        roleList.add(role);
+        for (Long roleId: id){
+            Role role = em
+                    .getReference(Role.class, roleId);
+            roleList.add(role);
+        }
         return roleList;
     }
 }

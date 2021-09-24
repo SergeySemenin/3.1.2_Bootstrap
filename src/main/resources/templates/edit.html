@@ -27,7 +27,7 @@
         <input type="text" th:field="*{password}" id="passwordPost"/>
         <br>
         <br>
-        <select name="select">
+        <select name="select[]" multiple size="2">
             <option th:each="r:${roles}" th:value="${r.id}" th:text="${r.role}"></option>
         </select>
         <input type="submit" value="Create!"/>
