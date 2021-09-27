@@ -38,25 +38,36 @@ public class UserController {
     }
 
     @GetMapping("/admin")
-    public String adminAllUsers(Model model, @ModelAttribute("user") User user) {
+    public String adminAllUsers(Principal principal,Model model) {
         model.addAttribute("users", serviceUser.getAllUsers());
+        User user = serviceUser.findByUserName(principal.getName());
+        model.addAttribute("user", user);
+
+        User newUser = new User();
+        model.addAttribute("newUser", newUser);
+
+
+        Set<Role> roles = roleService.getRoles();
+        model.addAttribute("roles", roles);
         return "admin";
     }
 
-    @GetMapping("admin/new")
-    public String newUser(Model model, @ModelAttribute("user") User user) {
-        Set<Role> roles = roleService.getRoles();
-        model.addAttribute("roles", roles);
-        return "new";
-    }
-
-    @PostMapping("admin/new")
+    @PostMapping("/admin")
     public String addUser(@RequestParam("select[]") Long[] select, @ModelAttribute("user") User user) {
         Set<Role> roles = roleService.getRolesById(select);
         user.setRoles(roles);
         serviceUser.add(user);
         return "redirect:/admin";
     }
+
+//    @GetMapping("admin/new")
+//    public String newUser(Model model, @ModelAttribute("user") User user) {
+//        Set<Role> roles = roleService.getRoles();
+//        model.addAttribute("roles", roles);
+//        return "new";
+//    }
+
+
 
     @DeleteMapping("admin/delete={id}")
     public String delete(@PathVariable("id") Long id) {
@@ -65,7 +76,7 @@ public class UserController {
     }
 
     @PatchMapping("admin/edit={id}")
-    public String update(@RequestParam("select[]") Long[] select, @ModelAttribute("user") User user, Model model) {
+    public String update(@RequestParam("select[]") Long[] select, @ModelAttribute("user") User user) {
 
         Set<Role> roles = roleService.getRolesById(select);
         user.setRoles(roles);
