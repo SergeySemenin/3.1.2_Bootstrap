@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return userDao.getUserByName(s);
+        return userDao.getUserByEmail(s);
     }
 
     @Override
@@ -55,9 +55,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, UserService {
     @Override
     @Transactional
     public void update(User user) {
-        if (user.getPassword() == null) {
-            user.setPassword(userDao.getUserByName(user.getName()).getPassword());
-        } else {
+        if (!user.getPassword().equals(userDao.getUserById(user.getId()).getPassword())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         userDao.update(user);

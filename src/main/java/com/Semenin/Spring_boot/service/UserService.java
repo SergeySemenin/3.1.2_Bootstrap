@@ -1,6 +1,5 @@
 package com.Semenin.Spring_boot.service;
 
-
 import com.Semenin.Spring_boot.model.User;
 
 import java.util.List;

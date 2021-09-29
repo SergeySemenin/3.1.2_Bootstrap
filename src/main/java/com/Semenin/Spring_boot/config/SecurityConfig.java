@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").access("hasAnyRole('ROLE_ADMIN')")
                 .antMatchers("/admin/**").authenticated()
                 .antMatchers("/admin/**").access("hasAnyRole('ROLE_ADMIN')")
-                .and().formLogin()  // Spring сам подставит свою логин форму
+                .and().formLogin().loginPage("/login").permitAll()  // Spring сам подставит свою логин форму
                 .successHandler(successUserHandler)
                 .and()
                 .csrf().disable().authorizeRequests();

@@ -4,5 +4,10 @@
       "name": "server.spring.mvc.hiddenmethod.filter.enabled",
       "type": "java.lang.String",
       "description": "Description for server.spring.mvc.hiddenmethod.filter.enabled."
-  }
-] }
+    },
+    {
+      "name": "security",
+      "type": "java.lang.String",
+      "description": "Description for security."
+    }
+  ] }

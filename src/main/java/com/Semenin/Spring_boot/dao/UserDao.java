@@ -6,6 +6,9 @@ import com.Semenin.Spring_boot.model.User;
 import java.util.List;
 
 public interface UserDao {
+
+    User getUserByEmail(String email);
+
     User getUserByName(String name);
 
     List<User> getAllUsers();
